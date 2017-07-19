@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "103034946765",
+    "firebase_url": "https://ordernow-3bcd2.firebaseio.com",
+    "project_id": "ordernow-3bcd2",
+    "storage_bucket": "ordernow-3bcd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103034946765:android:ca65f6ba09320a39",
+        "android_client_info": {
+          "package_name": "com.example.android.ordernow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "103034946765-5ejcjipfms999rv7hg19ijqp7oobol3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.ordernow",
+            "certificate_hash": "6a098ba25adee7dda5b8192d23a02af40f1d8838"
+          }
+        },
+        {
+          "client_id": "103034946765-t0vrjknhuddurpnjp2nfnisbdk2mq395.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD7ea6A9ss1rdgz2KeC09Ovh_UYBBqZhc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "103034946765-t0vrjknhuddurpnjp2nfnisbdk2mq395.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
