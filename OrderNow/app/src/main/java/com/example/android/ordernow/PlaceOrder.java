@@ -77,18 +77,18 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
         return super.onOptionsItemSelected(item);
     }
 
-    int testingComit;
-
     public void sendDataToCurrentOrders(){
         View view;
         TextView textView;
         TextView tv;
         int itemQuantity;
+        int itemPrice;
         for (int i = 0; i < mCursorAdapter.getCount(); i++){
             view = mCursorAdapter.getView(i, null, null);
             textView = (TextView) view.findViewById(R.id.item_amount_text);
             tv = (TextView) view.findViewById(R.id.item_price);
             itemQuantity = Integer.parseInt(String.valueOf(textView));
+            itemPrice = Integer.parseInt(String.valueOf(tv));
         }
     }
 
