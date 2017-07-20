@@ -84,7 +84,6 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
         TextView textView;
         TextView tv;
         int itemQuantity;
-        double itemTotalPrice;
         for (int i = 0; i < mCursorAdapter.getCount(); i++){
             view = mCursorAdapter.getView(i, null, null);
             textView = (TextView) view.findViewById(R.id.item_amount_text);
