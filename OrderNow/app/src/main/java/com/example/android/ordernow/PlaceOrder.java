@@ -77,7 +77,7 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
         return super.onOptionsItemSelected(item);
     }
 
-    int deleteme45;
+    int testingComit;
 
     public void sendDataToCurrentOrders(){
         View view;
