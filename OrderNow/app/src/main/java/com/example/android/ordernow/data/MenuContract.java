@@ -12,7 +12,7 @@ public class MenuContract {
 
     private MenuContract(){}
 
-    public static final String CONTENT_AUTHORITY = "com.example.android.ordernow";
+    public static final String CONTENT_AUTHORITY = "com.example.android.ordernow.data.MenuProvider";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 

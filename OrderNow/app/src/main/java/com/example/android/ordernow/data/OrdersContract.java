@@ -11,7 +11,7 @@ import android.provider.BaseColumns;
 public class OrdersContract {
     private OrdersContract(){}
 
-    public static final String CONTENT_AUTHORITY = "com.example.android.ordernow";
+    public static final String CONTENT_AUTHORITY = "com.example.android.ordernow.data.OrdersProvider";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
@@ -29,7 +29,7 @@ public class OrdersContract {
 
 
         public static final String TABLE_NAME = "Orders";
-        public static final String COLUMN_NAME_ITEM = "CurrentOrder";
+        public static final String COLUMN_NAME_ORDER_RECEIPT = "OrderItems";
         public static final String COLUMN_NAME_PRICE = "TotalPrice";
 
     }

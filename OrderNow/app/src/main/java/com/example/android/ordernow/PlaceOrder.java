@@ -2,8 +2,11 @@ package com.example.android.ordernow;
 
 import android.app.LoaderManager;
 import android.content.ClipData;
+import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
+import android.net.Uri;
 import android.view.Menu;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +20,8 @@ import android.widget.TextView;
 
 import com.example.android.ordernow.data.MenuContract.FeedEntry;
 import com.example.android.ordernow.data.OrderNowDbHelper;
+import com.example.android.ordernow.data.OrdersContract.OrdersEntry;
+import com.example.android.ordernow.data.OrdersProvider;
 
 import org.w3c.dom.Text;
 
@@ -27,6 +32,7 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
     TextView grandTotalTV;
     public static double gt;
     static Menu m;
+    ContentValues values = new ContentValues();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +87,47 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
         View view;
         TextView textView;
         TextView tv;
+        TextView itemtv;
+
         int itemQuantity;
-        int itemPrice;
+        double itemPrice;
+
+        ContentValues values = new ContentValues();
+
+        String currOrder = "";
         for (int i = 0; i < mCursorAdapter.getCount(); i++){
+
             view = mCursorAdapter.getView(i, null, null);
+
+            itemtv = (TextView) view.findViewById(R.id.item_name);
             textView = (TextView) view.findViewById(R.id.item_amount_text);
             tv = (TextView) view.findViewById(R.id.item_price);
-            itemQuantity = Integer.parseInt(String.valueOf(textView));
-            itemPrice = Integer.parseInt(String.valueOf(tv));
+
+            itemQuantity = Integer.parseInt(String.valueOf(textView.getText()));
+            itemPrice = Double.parseDouble(String.valueOf(tv.getText()));
+            String item = String.valueOf(itemtv.getText());
+
+            String newLine = System.getProperty("line.seperator");
+
+            MenuItem menuItem = m.findItem(R.id.total_text);
+
+            Double totalAmountDue = gt;
+
+            String itemOnReceipt = itemQuantity + "x " + item + ":  R" + itemPrice + newLine;
+
+            if (itemQuantity > 0){
+
+                currOrder = currOrder.concat(itemOnReceipt);
+
+            }
+
+            values.put(OrdersEntry.COLUMN_NAME_ORDER_RECEIPT, currOrder);
+            values.put(OrdersEntry.COLUMN_NAME_PRICE, totalAmountDue);
+
+            Uri newUri = getContentResolver().insert(OrdersEntry.CONTENT_URI, values);
+
+            Intent intent = new Intent(PlaceOrder.this, CurrentOrders.class);
+            startActivity(intent);
         }
     }
 
@@ -121,7 +160,7 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
     }
 
     public static void setMenuItem(double value){
-        MenuItem quant = (MenuItem) m.findItem(R.id.total_text);
+        MenuItem quant = m.findItem(R.id.total_text);
         quant.setTitle("R" + String.format("%.2f", value));
     }
 }
