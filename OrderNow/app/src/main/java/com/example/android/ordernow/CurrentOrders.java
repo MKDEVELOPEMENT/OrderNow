@@ -4,10 +4,12 @@ import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.ordernow.data.OrderNowDbHelper;
 import com.example.android.ordernow.data.OrdersContract.OrdersEntry;
@@ -31,6 +33,8 @@ public class CurrentOrders extends AppCompatActivity implements LoaderManager.Lo
         listView.setAdapter(mCursorAdapter);
 
         getLoaderManager().initLoader(1, null, this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

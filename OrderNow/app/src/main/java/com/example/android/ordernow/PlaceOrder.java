@@ -7,6 +7,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.net.Uri;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,14 +24,12 @@ import com.example.android.ordernow.data.OrderNowDbHelper;
 import com.example.android.ordernow.data.OrdersContract.OrdersEntry;
 import com.example.android.ordernow.data.OrdersProvider;
 
-import org.w3c.dom.Text;
-
 public class PlaceOrder extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private SQLiteDatabase db;
     PlaceOrderCursorAdapter mCursorAdapter;
     TextView grandTotalTV;
-    public static double gt;
+    public static double gt = 0;
     static Menu m;
     ContentValues values = new ContentValues();
 
@@ -58,6 +57,15 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
     }
 
     @Override
+    public void onBackPressed(){
+        gt = 0;
+        MenuItem quant = m.findItem(R.id.total_text);
+        quant.setTitle("R" + String.format("%.2f", 0d));
+        PlaceOrderCursorAdapter.mGrandTotaleMenuTV = 0;
+        this.finish();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.place_order_menu, menu);
@@ -78,7 +86,19 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
         switch (item.getItemId()){
             case R.id.send_data_menu_button:
                 sendDataToCurrentOrders();
-                break;
+                gt = 0;
+                MenuItem quant = m.findItem(R.id.total_text);
+                quant.setTitle("R" + String.format("%.2f", 0d));
+                return true;
+
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                finish();
+                gt = 0;
+                quant = m.findItem(R.id.total_text);
+                quant.setTitle("R" + String.format("%.2f", 0d));
+                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -111,8 +131,6 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
 
             MenuItem menuItem = m.findItem(R.id.total_text);
 
-            Double totalAmountDue = gt;
-
             String itemOnReceipt = itemQuantity + "x " + item + ":  R" + itemPrice + newLine;
 
             if (itemQuantity > 0){
@@ -121,14 +139,13 @@ public class PlaceOrder extends AppCompatActivity implements LoaderManager.Loade
 
             }
 
-            values.put(OrdersEntry.COLUMN_NAME_ORDER_RECEIPT, currOrder);
-            values.put(OrdersEntry.COLUMN_NAME_PRICE, totalAmountDue);
-
-            Uri newUri = getContentResolver().insert(OrdersEntry.CONTENT_URI, values);
-
-            Intent intent = new Intent(PlaceOrder.this, CurrentOrders.class);
-            startActivity(intent);
         }
+        values.put(OrdersEntry.COLUMN_NAME_ORDER_RECEIPT, currOrder);
+        values.put(OrdersEntry.COLUMN_NAME_PRICE, gt);
+        Uri newUri = getContentResolver().insert(OrdersEntry.CONTENT_URI, values);
+
+        Intent intent = new Intent(PlaceOrder.this, CurrentOrders.class);
+        startActivity(intent);
     }
 
     @Override

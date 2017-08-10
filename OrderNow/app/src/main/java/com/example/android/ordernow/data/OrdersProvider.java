@@ -113,7 +113,7 @@ public class OrdersProvider extends ContentProvider {
         }
 
         long id = database.insert(
-                MenuContract.FeedEntry.TABLE_NAME,
+                OrdersContract.OrdersEntry.TABLE_NAME,
                 null,
                 values
         );
