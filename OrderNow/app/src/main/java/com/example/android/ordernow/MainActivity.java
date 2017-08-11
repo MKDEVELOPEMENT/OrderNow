@@ -30,13 +30,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button takeOrderButton = (Button) findViewById(R.id.take_order_button);
+        Button mTakeOrderButton = (Button) findViewById(R.id.take_order_button);
+        Button mCurrOrdersButton = (Button) findViewById(R.id.current_orders_button);
 
-        takeOrderButton.setOnClickListener(new View.OnClickListener() {
+        mTakeOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, PlaceOrder.class);
 
+                startActivity(intent);
+            }
+        });
+
+        mCurrOrdersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CurrentOrders.class);
                 startActivity(intent);
             }
         });

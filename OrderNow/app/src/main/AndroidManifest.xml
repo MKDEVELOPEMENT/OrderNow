@@ -31,17 +31,17 @@
             android:name=".data.MenuProvider"
             android:authorities="com.example.android.ordernow.data.MenuProvider"
             android:exported="false" />
-
         <provider
-            android:authorities="com.example.android.ordernow.data.OrdersProvider"
             android:name=".data.OrdersProvider"
-            android:exported="false"/>
+            android:authorities="com.example.android.ordernow.data.OrdersProvider"
+            android:exported="false" />
 
         <activity
             android:name=".PlaceOrder"
             android:noHistory="true"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".CurrentOrders"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".CurrentOrders" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>
