@@ -25,9 +25,11 @@ public class PlaceOrderCursorAdapter extends CursorAdapter {
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return LayoutInflater.from(context).inflate(R.layout.place_order_list_view, parent, false);
     }
+
     int newmount;
     public static double totalPrice;
     public static double mGrandTotaleMenuTV;
+
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView itemtv = (TextView) view.findViewById(R.id.item_name);

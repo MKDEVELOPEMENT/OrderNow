@@ -8,6 +8,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,6 +49,8 @@ public class MenuAct extends AppCompatActivity implements LoaderManager.LoaderCa
             }
         });
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         getLoaderManager().initLoader(0, null, this);
     }
 
@@ -72,6 +75,9 @@ public class MenuAct extends AppCompatActivity implements LoaderManager.LoaderCa
         switch (item.getItemId()){
             case R.id.delete_all_item:
                 deleteAllItems();
+                return true;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

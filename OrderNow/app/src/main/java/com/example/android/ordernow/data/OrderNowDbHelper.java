@@ -29,9 +29,9 @@ public class OrderNowDbHelper extends SQLiteOpenHelper {
                 FeedEntry.COLUMN_NAME_PRICE + " REAL NOT NULL DEFAULT 0);";
         db.execSQL(CREATE_MENU_TABLE);
 
-        String CREATE_ORDERS_TABLE = "CREATE TABLE" + OrdersEntry.TABLE_NAME + "(" +
+        String CREATE_ORDERS_TABLE = "CREATE TABLE " + OrdersEntry.TABLE_NAME + "(" +
                 OrdersEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                OrdersEntry.COLUMN_NAME_ITEM + " TEXT NOT NULL, " +
+                OrdersEntry.COLUMN_NAME_ORDER_RECEIPT + " TEXT NOT NULL, " +
                 OrdersEntry.COLUMN_NAME_PRICE + " REAL NOT NULL DEFAULT 0);";
         db.execSQL(CREATE_ORDERS_TABLE);
     }

@@ -20,7 +20,7 @@ import com.example.android.ordernow.data.MenuContract.FeedEntry;
 public class MenuProvider extends ContentProvider {
 
     /** Tag for the log messages */
-    public static final String LOG_TAG = MenuProvider.class.getSimpleName();
+    public static final String LOG_TAG = OrdersProvider.class.getSimpleName();
 
     public int tester;
 
